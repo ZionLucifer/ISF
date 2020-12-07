@@ -160,7 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 15, right: 15),
-                  child: Text("Welcome",
+                  child: Text("Welcome Isac",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
