@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/isac/Downloads/ISF/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-km/values-km.xml",
+            "outputFile": "/Users/isac/Developer/BREAK TALKS/Github/ISF/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-km/values-km.xml",
             "map": [
                 {
                     "source": "/Users/isac/.gradle/caches/transforms-2/files-2.1/2f220e4626961757d61af53add94b7ee/play-services-base-17.0.0/res/values-km/values.xml",

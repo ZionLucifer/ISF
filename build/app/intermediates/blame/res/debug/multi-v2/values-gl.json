@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/isac/Downloads/ISF/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-gl/values-gl.xml",
+            "outputFile": "/Users/isac/Developer/BREAK TALKS/Github/ISF/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-gl/values-gl.xml",
             "map": [
                 {
                     "source": "/Users/isac/.gradle/caches/transforms-2/files-2.1/8bd74c5ee275b7d5f9f4f54a272c1852/jetified-play-services-basement-17.0.0/res/values-gl/values.xml",

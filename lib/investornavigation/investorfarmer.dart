@@ -1,13 +1,10 @@
 import 'dart:convert';
 import 'package:apps/investordash.dart';
-import 'package:apps/investornavigation/dashboard_screen.dart';
 import 'package:apps/investornavigation/investorprofile.dart';
 import 'package:apps/loginpage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'investorfarm.dart';
-import 'notification.dart';
 import 'InvestorDrawer.dart';
 
 class Chat extends StatefulWidget {

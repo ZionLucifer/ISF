@@ -2,17 +2,12 @@ import 'dart:async';
 import 'package:apps/dashboard.dart';
 import 'package:apps/investordash.dart';
 import 'package:apps/investornavigation/cart_screen.dart';
-import 'package:apps/investornavigation/dashboard_screen.dart';
-import 'package:apps/investornavigation/investorprofile.dart';
 import 'package:apps/model/crops_model.dart';
 import 'package:apps/playground/playground.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'investorfarm.dart';
-import 'investorfarmer.dart';
-import 'notification.dart';
 import 'InvestorDrawer.dart';
 
 class MyApps extends StatefulWidget {

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/isac/Downloads/ISF/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/Users/isac/Developer/BREAK TALKS/Github/ISF/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
                     "source": "/Users/isac/.gradle/caches/transforms-2/files-2.1/8bd74c5ee275b7d5f9f4f54a272c1852/jetified-play-services-basement-17.0.0/res/values/values.xml",
@@ -40,7 +40,7 @@
                     }
                 },
                 {
-                    "source": "/Users/isac/Downloads/ISF/android/app/src/main/res/values/styles.xml",
+                    "source": "/Users/isac/Developer/BREAK TALKS/Github/ISF/android/app/src/main/res/values/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
