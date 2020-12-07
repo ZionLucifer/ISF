@@ -1,0 +1,19 @@
+# This is a generated file; do not edit or check into version control.
+file_picker=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/file_picker-1.13.3/
+flutter_keyboard_visibility=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_keyboard_visibility-0.7.0/
+flutter_local_notifications=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-0.8.4+3/
+flutter_plugin_android_lifecycle=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-1.0.11/
+geolocator=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator-6.1.11/
+google_maps_flutter=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/google_maps_flutter-1.0.6/
+image_picker=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.6.7+14/
+path_provider=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.24/
+path_provider_linux=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-0.0.1+2/
+path_provider_macos=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-0.0.4+6/
+path_provider_windows=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-0.0.4+3/
+search_choices=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/search_choices-1.0.17/
+shared_preferences=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.12+4/
+shared_preferences_linux=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_linux-0.0.2+4/
+shared_preferences_macos=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-0.0.1+11/
+shared_preferences_web=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-0.1.2+7/
+shared_preferences_windows=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_windows-0.0.1+3/
+sqflite=/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-1.3.2+1/
