@@ -1,0 +1,8 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="li.jod.search_choices" >
+4
+5    <uses-sdk android:minSdkVersion="16" />
+5-->/Users/isac/Developer/SDKs/flutter/.pub-cache/hosted/pub.dartlang.org/search_choices-1.0.17/android/src/main/AndroidManifest.xml
+6
+7</manifest>

@@ -11,14 +11,28 @@ class Chating extends StatefulWidget {
 }
 
 class _ChatingState extends State<Chating> {
+  SharedPreferences sharedPreferences;
+
+  String userId, mobile;
+
   Future<List> getdata() async {
-    var url = "https://breaktalks.com/isf/appconnect/message.php";
-    final response = await http.get(url);
+      var response = await http.post(
+       "https://breaktalks.com/isf/appconnect/message.php",
+        body: {"invester_id": userId});
+        print(userId);
     var dataReceived = json.decode(response.body);
-    print("recived");
-    print(dataReceived);
     return dataReceived;
+    //print("Farmlist");
+    // print('value $value');
+    // var farmlist = dataReceived;
   }
+  // Future<List> getdata() async {
+  //   var url = "https://breaktalks.com/isf/appconnect/message.php";
+  //   final response = await http.get(url);
+  //   var dataReceived = json.decode(response.body);
+  //   // print(dataReceived);
+  //   return dataReceived;
+  // }
 
   @override
   void initstate() {
@@ -49,7 +63,7 @@ class _ChatingState extends State<Chating> {
           ),
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.person), 
+              icon: Icon(Icons.person),
               color: Colors.white,
               onPressed: () {
                 Navigator.pushReplacement(context,
@@ -119,7 +133,7 @@ class GroupWindow extends StatefulWidget {
 
 class _GroupWindowState extends State<GroupWindow> {
   Future<List> getdata() async {
-    var url = "https://breaktalks.com/isf/appconnect/message.php";
+    var url = "https://breaktalks.com/isf/appconnect/message.php" ;
     final response = await http.get(url);
     var dataReceived = json.decode(response.body);
     // print(dataReceived);
@@ -147,110 +161,110 @@ class _GroupWindowState extends State<GroupWindow> {
             if (snapshot.hasError) print(snapshot.error);
             return snapshot.hasData
                 ? SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  CustomHeading(
-                    title: 'Direct Messages',
-                  ),
-                  Material(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ChatWindow(
-                              list: snapshot.data,
-                            ),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withAlpha(50),
-                              offset: Offset(0, 0),
-                              blurRadius: 5,
-                            ),
-                          ],
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.white,
+                    child: Column(
+                      children: <Widget>[
+                        CustomHeading(
+                          title: 'Direct Messages',
                         ),
-                        child: Row(
-                          children: <Widget>[
-                            Stack(
-                              children: <Widget>[
-                                Container(
-                                  child: CircleAvatar(
-                                    child: Icon(
-                                      Icons.people,
-                                      color: Colors.white,
-                                      size: 30,
-                                    ),
-                                    minRadius: 35,
-                                    backgroundColor: Colors.orange[200],
+                        Material(
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ChatWindow(
+                                    list: snapshot.data,
                                   ),
                                 ),
-                              ],
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 10),
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
+                              );
+                            },
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                              padding: EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withAlpha(50),
+                                    offset: Offset(0, 0),
+                                    blurRadius: 5,
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.white,
+                              ),
+                              child: Row(
                                 children: <Widget>[
-                                  Text(
-                                    'Customer Support',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                    ),
+                                  Stack(
+                                    children: <Widget>[
+                                      Container(
+                                        child: CircleAvatar(
+                                          child: Icon(
+                                            Icons.people,
+                                            color: Colors.white,
+                                            size: 30,
+                                          ),
+                                          minRadius: 35,
+                                          backgroundColor: Colors.orange[200],
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 5),
+                                    padding: EdgeInsets.only(left: 10),
                                   ),
-                                  Text(
-                                    "Message",
-                                    style: TextStyle(
-                                      color: Color(0xff8C68EC),
-                                      fontSize: 14,
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(
+                                          'Customer Support',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 5),
+                                        ),
+                                        Text(
+                                          "Message",
+                                          style: TextStyle(
+                                            color: Color(0xff8C68EC),
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 5),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 5),
-                                  ),
+                                  Column(
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: EdgeInsets.only(right: 15),
+                                        child: Icon(
+                                          Icons.chevron_right,
+                                          size: 18,
+                                        ),
+                                      )
+                                    ],
+                                  )
                                 ],
                               ),
                             ),
-                            Column(
-                              children: <Widget>[
-                                Padding(
-                                  padding: EdgeInsets.only(right: 15),
-                                  child: Icon(
-                                    Icons.chevron_right,
-                                    size: 18,
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
+                          ),
+                        )
+                      ],
                     ),
                   )
-                ],
-              ),
-            )
                 : new Center(
-              child: new CircularProgressIndicator(
-                backgroundColor: Colors.orange,
-              ),
-            );
+                    child: new CircularProgressIndicator(
+                      backgroundColor: Colors.orange,
+                    ),
+                  );
           },
         ),
       ),
@@ -297,6 +311,8 @@ class _ChatWindowState extends State<ChatWindow> {
     final response = await http.post(
         "https://breaktalks.com/isf/appconnect/sendmessage.php",
         body: {"send_receive_message": name.text, "sender_id": userId});
+        print(userId);
+        print(name.text);
   }
 
   @override
@@ -368,7 +384,7 @@ class _ChatWindowState extends State<ChatWindow> {
                     widget.list[index]['receiver_id'] != '' &&
                     widget.list[index]['support_sender_id'] == '') {
                   reverse = false;
-                } else if (widget.list[index]['sender_id'] != '' &&
+                } else if (widget.list[index]['sender_id'] == '' &&
                     widget.list[index]['receiver_id'] == '' &&
                     widget.list[index]['support_sender_id'] == '') {
                   reverse = true;
@@ -376,7 +392,7 @@ class _ChatWindowState extends State<ChatWindow> {
 
                 var avatar = Padding(
                   padding:
-                  const EdgeInsets.only(left: 8.0, bottom: 8.0, right: 8.0),
+                      const EdgeInsets.only(left: 8.0, bottom: 8.0, right: 8.0),
                   child: CircleAvatar(
                     backgroundColor: Colors.orange,
                     child: Text(
@@ -387,7 +403,7 @@ class _ChatWindowState extends State<ChatWindow> {
                 );
                 var avatars = Padding(
                   padding:
-                  const EdgeInsets.only(left: 8.0, bottom: 8.0, right: 8.0),
+                      const EdgeInsets.only(left: 8.0, bottom: 8.0, right: 8.0),
                   child: CircleAvatar(
                     backgroundColor: Colors.orange,
                     child: Text("C", style: TextStyle(color: Colors.white)),
@@ -408,7 +424,7 @@ class _ChatWindowState extends State<ChatWindow> {
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Text(
-                        widget.list[index]['send_receive_message'],
+                        widget.list[index]['message_id'],
                         overflow: TextOverflow.ellipsis,
                         maxLines: 5,
                       ),

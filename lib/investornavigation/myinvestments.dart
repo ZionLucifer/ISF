@@ -24,6 +24,7 @@ class _fundnewState extends State<fundnew> {
     final response = await http.get(url);
     var dataReceived = json.decode(response.body);
     return dataReceived;
+    
   }
 
   @override

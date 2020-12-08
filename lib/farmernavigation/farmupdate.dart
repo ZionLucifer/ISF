@@ -133,7 +133,8 @@ class _farmernotiState extends State<farmernoti> {
                     ? Center(child: Text('No Data Found'))
                     : FarmListView(overview);
               } else if (snapshot.hasError) {
-                return Center(child: Text('Error Occurs'));
+                return  Center(child: CircularProgressIndicator());
+                // Center(child: Text('Error Occurs'));
               }
               return Center(
                   child: Container(
