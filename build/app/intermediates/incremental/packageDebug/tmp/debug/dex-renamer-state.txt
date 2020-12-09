@@ -1,4 +1,4 @@
-#Tue Dec 08 22:35:13 IST 2020
+#Wed Dec 09 15:00:42 IST 2020
 base.0=/Users/isac/Developer/BREAK TALKS/Github/ISF/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

@@ -409,6 +409,7 @@ class _ChatWindowState extends State<ChatWindow> {
                       child: Text(
                         widget.list[index]['send_receive_message'],
                         overflow: TextOverflow.ellipsis,
+                        maxLines: 20,
                       ),
                     ),
                   ),

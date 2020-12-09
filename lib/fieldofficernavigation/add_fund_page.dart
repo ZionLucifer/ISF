@@ -132,7 +132,7 @@ class _AddFundPageState extends State<AddFundPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Funds", style: TextStyle(color: Colors.white)),
+        title: Text("Request Funds", style: TextStyle(color: Colors.white)),
         leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
@@ -177,7 +177,7 @@ class _AddFundPageState extends State<AddFundPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-          label: Text('Add Fund', style: TextStyle(color: Colors.white)),
+          label: Text('Request Fund', style: TextStyle(color: Colors.white)),
           onPressed: save,
           backgroundColor: Colors.orange),
     );

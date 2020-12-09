@@ -181,7 +181,7 @@ class _fielddashState extends State<fielddash> {
           Expanded(
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
+                crossAxisCount: 3,
                 childAspectRatio: 7 / 9,
                 mainAxisSpacing: 15.0,
                 crossAxisSpacing: 15.0,

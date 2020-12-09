@@ -17,7 +17,7 @@ List list = [
   },
   {
     "id": "addfund",
-    "name": "Add Fund",
+    "name": "Add Funds",
     "icon": Icons.attach_money,
     "image": "assets/img/addfund.png",
     "color": Colors.redAccent
