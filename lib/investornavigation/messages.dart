@@ -11,28 +11,13 @@ class Chating extends StatefulWidget {
 }
 
 class _ChatingState extends State<Chating> {
-  SharedPreferences sharedPreferences;
-
-  String userId, mobile;
-
   Future<List> getdata() async {
-      var response = await http.post(
-       "https://breaktalks.com/isf/appconnect/message.php",
-        body: {"invester_id": userId});
-        print(userId);
+    var url = "https://breaktalks.com/isf/appconnect/message.php";
+    final response = await http.get(url);
     var dataReceived = json.decode(response.body);
+    // print(dataReceived);
     return dataReceived;
-    //print("Farmlist");
-    // print('value $value');
-    // var farmlist = dataReceived;
   }
-  // Future<List> getdata() async {
-  //   var url = "https://breaktalks.com/isf/appconnect/message.php";
-  //   final response = await http.get(url);
-  //   var dataReceived = json.decode(response.body);
-  //   // print(dataReceived);
-  //   return dataReceived;
-  // }
 
   @override
   void initstate() {
@@ -133,7 +118,7 @@ class GroupWindow extends StatefulWidget {
 
 class _GroupWindowState extends State<GroupWindow> {
   Future<List> getdata() async {
-    var url = "https://breaktalks.com/isf/appconnect/message.php" ;
+    var url = "https://breaktalks.com/isf/appconnect/message.php";
     final response = await http.get(url);
     var dataReceived = json.decode(response.body);
     // print(dataReceived);
@@ -218,7 +203,7 @@ class _GroupWindowState extends State<GroupWindow> {
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(
-                                          'Customer Support',
+                                          'Customer Care',
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontWeight: FontWeight.bold,
@@ -311,8 +296,6 @@ class _ChatWindowState extends State<ChatWindow> {
     final response = await http.post(
         "https://breaktalks.com/isf/appconnect/sendmessage.php",
         body: {"send_receive_message": name.text, "sender_id": userId});
-        print(userId);
-        print(name.text);
   }
 
   @override
@@ -361,7 +344,7 @@ class _ChatWindowState extends State<ChatWindow> {
       appBar: AppBar(
         backgroundColor: Colors.orange[300],
         title: Text(
-          "Customer Support",
+          "Customer Care",
           style: TextStyle(color: Colors.white),
         ),
         leading: IconButton(
@@ -384,7 +367,7 @@ class _ChatWindowState extends State<ChatWindow> {
                     widget.list[index]['receiver_id'] != '' &&
                     widget.list[index]['support_sender_id'] == '') {
                   reverse = false;
-                } else if (widget.list[index]['sender_id'] == '' &&
+                } else if (widget.list[index]['sender_id'] != '' &&
                     widget.list[index]['receiver_id'] == '' &&
                     widget.list[index]['support_sender_id'] == '') {
                   reverse = true;
@@ -424,9 +407,8 @@ class _ChatWindowState extends State<ChatWindow> {
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Text(
-                        widget.list[index]['message_id'],
+                        widget.list[index]['send_receive_message'],
                         overflow: TextOverflow.ellipsis,
-                        maxLines: 5,
                       ),
                     ),
                   ),
@@ -455,9 +437,14 @@ class _ChatWindowState extends State<ChatWindow> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: message,
+                      SizedBox(
+                          width: 150,
+                      ),
+                      Expanded(
+                                              child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: message,
+                        ),
                       ),
                       avatar,
                     ],
@@ -467,9 +454,16 @@ class _ChatWindowState extends State<ChatWindow> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
                       avatars,
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: message,
+                      Expanded(
+              
+                                              child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: message,
+                        ),
+
+                      ),
+                       SizedBox(
+                          width: 150,
                       ),
                     ],
                   );
