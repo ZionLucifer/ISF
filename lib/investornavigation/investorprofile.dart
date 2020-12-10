@@ -13,6 +13,8 @@ import 'notification.dart';
 import 'InvestorDrawer.dart';
 
 class Promodel extends StatefulWidget {
+  //  final String userId;
+  // Promodel({this.userId});
   @override
   _PromodelState createState() => _PromodelState();
 }
@@ -23,20 +25,21 @@ class _PromodelState extends State<Promodel> {
 
   Future<List> obtenerUsuarios() async {
     sharedPreferences = await SharedPreferences.getInstance();
-    var datas = sharedPreferences.getString("token");
+    var userId = sharedPreferences.getString("user_id");
     final response = await http
         .post("https://breaktalks.com/isf/appconnect/profile.php", body: {
-      "login_id": '$datas',
+      "invester_id": '$userId',
     });
     var data = json.decode(response.body);
-
-    if (sharedPreferences.getString("token") == data[0]['login_id']) {
-      setState(() {
-        return json.decode(response.body);
-      });
-    }
-    return data;
-  }
+    print(data);
+    print('token$userId');
+    // if (sharedPreferences.getString("user_id") == data[0]['invester_id']) {
+    //   setState(() {
+    //     return json.decode(response.body);
+    //   });
+    // }
+    return data; 
+ }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +71,7 @@ class _PromodelState extends State<Promodel> {
                   scaffoldKey: _scaffoldKey,
                 )
               : new Center(
-                  child: new CircularProgressIndicator(),
+                  child: new Text('no data'),
                 );
         },
       )),

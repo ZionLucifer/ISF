@@ -195,7 +195,7 @@ class _CustomListViewState extends State<CustomListView> {
                           });
                         },
                         child: Text(
-                          "Add to Cart",
+                          "EOI",
                           style: TextStyle(color: Colors.white),
                         )),
                   )

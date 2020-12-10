@@ -80,7 +80,7 @@ class _AddFundPageState extends State<AddFundPage> {
       });
       showDialog(
           context: context,
-          builder: (_) => LogoutOverlay(message: "Added Funds"));
+          builder: (_) => LogoutOverlay(message: "Funds Added"));
     } else {
       return null;
       // showDialog(
@@ -132,7 +132,7 @@ class _AddFundPageState extends State<AddFundPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Request Funds", style: TextStyle(color: Colors.white)),
+        title: Text("Fund Request", style: TextStyle(color: Colors.white)),
         leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {

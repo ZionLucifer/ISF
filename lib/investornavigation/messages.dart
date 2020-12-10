@@ -203,7 +203,7 @@ class _GroupWindowState extends State<GroupWindow> {
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(
-                                          'Customer Care',
+                                          'Customer Support',
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontWeight: FontWeight.bold,
@@ -344,7 +344,7 @@ class _ChatWindowState extends State<ChatWindow> {
       appBar: AppBar(
         backgroundColor: Colors.orange[300],
         title: Text(
-          "Customer Care",
+          "Customer Support",
           style: TextStyle(color: Colors.white),
         ),
         leading: IconButton(

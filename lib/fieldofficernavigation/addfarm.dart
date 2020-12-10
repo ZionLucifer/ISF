@@ -37,6 +37,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
   String _landType;
   String _irrigation;
   String _soilType;
+  String _enterprise;
   String _baseLocation;
   List _farmerListId = [];
   Position position;
@@ -143,10 +144,10 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
         ..fields['field_officer_id'] = userId
         ..fields['farmer_id'] = _farmerId.split('/').first.trim().toString()
         ..fields['land_type'] = _landType.toString()
-        ..fields['soil_type'] = _soilType
+        ..fields['soil_type'] = _soilType.toString()
         ..fields['acerage'] = acerageController.text.toString()
         ..fields['base_location'] = _baseLocation.toString()
-        ..fields['enterprise'] = enterpriseController.text.toString()
+        ..fields['enterprise'] = _enterprise.toString()
         ..fields['credit_worthiness'] = farmerScore2Controller.text.toString()
         ..fields['social_credibility'] = farmerScore3Controller.text.toString()
         ..fields['land_factors'] = farmerScore4Controller.text.toString()
@@ -474,7 +475,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
                                 color: Colors.redAccent, fontSize: 16.0),
-                            hintText: 'Please select Farmer Id',
+                            // hintText: 'Please select Farmer Id',
                             labelText: _farmerListId == null
                                 ? 'Please Wait While the data is being fetched'
                                 : 'Select Farmer Id',
@@ -527,7 +528,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
                                 color: Colors.redAccent, fontSize: 16.0),
-                            hintText: 'Please select expense',
+                            // hintText: 'Please select expense',
                             labelText: 'Select Land Type',
                             labelStyle: TextStyle(
                                 fontSize: 17.0, color: Colors.black45),
@@ -577,7 +578,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
                                 color: Colors.redAccent, fontSize: 16.0),
-                            hintText: 'Please select Irrigation Type',
+                            // hintText: 'Please select Irrigation Type',
                             labelText: 'Select Irrigation',
                             labelStyle: TextStyle(
                                 fontSize: 17.0, color: Colors.black45),
@@ -627,7 +628,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
                                 color: Colors.redAccent, fontSize: 16.0),
-                            hintText: 'Please select Soil Type',
+                            // hintText: 'Please select Soil Type',
                             labelText: 'Select Soil Type',
                             labelStyle: TextStyle(
                                 fontSize: 17.0, color: Colors.black45),
@@ -684,7 +685,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                     labelStyle:
                     TextStyle(fontSize: 17.0, color: Colors.black45),
                     hintStyle: TextStyle(fontSize: 17.0, color: Colors.black45),
-                    hintText: 'Acreage',
+                    // hintText: 'Acreage',
                     labelText: 'Enter Acreage',
                     contentPadding: new EdgeInsets.symmetric(horizontal: 15.0),
                     border: InputBorder.none),
@@ -706,7 +707,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                 controller: plotController,
                 keyboardType: TextInputType.numberWithOptions(),
                 decoration: new InputDecoration(
-                    hintText: 'Plot',
+                    // hintText: 'Plot',
                     labelStyle:
                     TextStyle(fontSize: 17.0, color: Colors.black45),
                     hintStyle: TextStyle(fontSize: 17.0, color: Colors.black45),
@@ -737,7 +738,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
                                 color: Colors.redAccent, fontSize: 16.0),
-                            hintText: 'Please select Base Location',
+                            // hintText: 'Please select Base Location',
                             labelText: 'Select Base Location',
                             labelStyle: TextStyle(
                                 fontSize: 17.0, color: Colors.black45),
@@ -775,31 +776,86 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                 ),
               ),
             )),
-        Padding(
-          padding: const EdgeInsets.only(top: 25.0),
-          child: Container(
-            width: double.infinity,
-            height: 50,
-            decoration: BoxDecoration(
-                color: Colors.orange[100],
-                borderRadius: BorderRadius.circular(5.0)),
+            Padding(
+            padding: const EdgeInsets.only(top: 25.0),
             child: Container(
-              width: 200,
-              child: new TextFormField(
-                // controller: enterprise,
-                controller: enterpriseController,
-                decoration: new InputDecoration(
-                    hintText: 'Enterprise',
-                    labelText: 'Enter Enterprise',
-                    labelStyle:
-                    TextStyle(fontSize: 17.0, color: Colors.black45),
-                    hintStyle: TextStyle(fontSize: 17.0, color: Colors.black45),
-                    contentPadding: new EdgeInsets.symmetric(horizontal: 15.0),
-                    border: InputBorder.none),
+              height: 50,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: Colors.orange[100],
+                  borderRadius: BorderRadius.circular(5.0)),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                    value: _enterprise,
+                    hint: Container(
+                      width: 200,
+                      child: TextFormField(
+                          textAlign: TextAlign.start,
+                          decoration: InputDecoration(
+                            errorStyle: TextStyle(
+                                color: Colors.redAccent, fontSize: 16.0),
+                            // hintText: 'Please select Soil Type',
+                            labelText: 'Select Enterprise',
+                            labelStyle: TextStyle(
+                                fontSize: 17.0, color: Colors.black45),
+                            hintStyle: TextStyle(
+                                fontSize: 17.0, color: Colors.black45),
+                            contentPadding:
+                            new EdgeInsets.symmetric(horizontal: 15.0),
+                            border: InputBorder.none,
+                          )),
+                    ),
+                    items: <String>[
+                      'Corp',
+                      'Aqua',
+                      'Poultry',
+                      'Dairy',
+                      'Goat'
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 15.0),
+                          child: Text(value),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (String value) {
+                      setState(() {
+                        _enterprise = value;
+                      });
+                    },
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
+            )),
+        // Padding(
+        //   padding: const EdgeInsets.only(top: 25.0),
+        //   child: Container(
+        //     width: double.infinity,
+        //     height: 50,
+        //     decoration: BoxDecoration(
+        //         color: Colors.orange[100],
+        //         borderRadius: BorderRadius.circular(5.0)),
+        //     child: Container(
+        //       width: 200,
+        //       child: new TextFormField(
+        //         // controller: enterprise,
+        //         controller: enterpriseController,
+        //         decoration: new InputDecoration(
+        //             hintText: 'Enterprise',
+        //             labelText: 'Enter Enterprise',
+        //             labelStyle:
+        //             TextStyle(fontSize: 17.0, color: Colors.black45),
+        //             hintStyle: TextStyle(fontSize: 17.0, color: Colors.black45),
+        //             contentPadding: new EdgeInsets.symmetric(horizontal: 15.0),
+        //             border: InputBorder.none),
+        //       ),
+        //     ),
+        //   ),
+        // ),
         Padding(
           padding: const EdgeInsets.only(top: 25.0),
           child: Container(
@@ -817,7 +873,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                     labelStyle:
                     TextStyle(fontSize: 17.0, color: Colors.black45),
                     hintStyle: TextStyle(fontSize: 17.0, color: Colors.black45),
-                    hintText: 'Description',
+                    // hintText: 'Description',
                     labelText: 'Give Your Description',
                     contentPadding: new EdgeInsets.symmetric(horizontal: 15.0),
                     border: InputBorder.none),
@@ -839,7 +895,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                 controller: farmerScore1Controller,
                 keyboardType: TextInputType.number,
                 decoration: new InputDecoration(
-                    hintText: 'Farming Experience',
+                    // hintText: 'Farming Experience',
                     labelText: 'Farming Experience',
                     labelStyle:
                     TextStyle(fontSize: 17.0, color: Colors.black45),
@@ -868,7 +924,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                   LengthLimitingTextInputFormatter(2)
                 ],
                 decoration: new InputDecoration(
-                  hintText: 'Credit Score',
+                  // hintText: 'Credit Score',
                   labelStyle: TextStyle(fontSize: 17.0, color: Colors.black45),
                   hintStyle: TextStyle(fontSize: 17.0, color: Colors.black45),
                   labelText: 'Credit Score out of 10',
@@ -913,7 +969,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                   LengthLimitingTextInputFormatter(2)
                 ],
                 decoration: new InputDecoration(
-                    hintText: 'Social Credibility Score',
+                    // hintText: 'Social Credibility Score',
                     labelStyle:
                     TextStyle(fontSize: 17.0, color: Colors.black45),
                     hintStyle: TextStyle(fontSize: 17.0, color: Colors.black45),
@@ -957,7 +1013,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                   LengthLimitingTextInputFormatter(2)
                 ],
                 decoration: new InputDecoration(
-                    hintText: 'Land Factors Score',
+                    // hintText: 'Land Factors Score',
                     labelStyle:
                     TextStyle(fontSize: 17.0, color: Colors.black45),
                     hintStyle: TextStyle(fontSize: 17.0, color: Colors.black45),
@@ -1001,7 +1057,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                   LengthLimitingTextInputFormatter(2)
                 ],
                 decoration: new InputDecoration(
-                    hintText: 'Health Factors Score',
+                    // hintText: 'Health Factors Score',
                     labelStyle:
                     TextStyle(fontSize: 17.0, color: Colors.black45),
                     hintStyle: TextStyle(fontSize: 17.0, color: Colors.black45),

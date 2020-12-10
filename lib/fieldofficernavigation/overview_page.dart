@@ -175,11 +175,11 @@ class OverVierHead extends StatelessWidget {
 
     totalFund = double.tryParse(overmod?.totalfund ?? '0');
     totalExpense = double.tryParse(overmod?.totalexpense ?? '0');
-    availableFund = totalFund -totalExpense;
+    availableFund = totalFund - totalExpense;
 
-    if(totalFund > totalExpense){
+    if(totalFund >= totalExpense){
        sign = '+';
-    }
+    }else
      sign = '-';
 
     Widget grid(String one, String two) {
@@ -233,16 +233,19 @@ class OverVierHead extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Expanded(
-                    child: grid('Total Fund', '₹ ${overmod?.totalfund ?? 0}')),
+                    child: grid('Total Fund', '₹ ${totalFund ?? 0}')),
+                    // child: grid('Total Fund', '₹ ${overmod?.totalfund ?? 0}')),
                 Expanded(
                     child: grid(
-                        'Total Expenses', '₹ ${overmod?.totalexpense ?? 0}')),
+                        'Total Expenses', '₹ ${totalExpense ?? 0}')),
+                        // 'Total Expenses', '₹ ${overmod?.totalexpense ?? 0}')),
               ],
             ),
             grid('Total Available Fund',
-            // '$sign ₹ $availableFund'
-            // )
-                '$sign ₹ ${(double.tryParse(overmod?.totalexpense ?? '0') ?? 0) - (double.tryParse(overmod?.totalfund ?? '0') ?? 0)}')
+            '$sign ₹ $availableFund'
+            )
+                // '$sign ₹ ${(double.tryParse(overmod?.totalfund ?? '0') ?? 0) -
+                //  (double.tryParse(overmod?.totalexpense ?? '0') ?? 0)}'),
           ],
         ),
       ),

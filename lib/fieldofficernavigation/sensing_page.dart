@@ -1,244 +1,153 @@
-import 'dart:io';
-import 'package:apps/components/logout_overlay.dart';
 import 'package:apps/model/overview.dart';
-import "package:flutter/material.dart";
-import 'package:image_picker/image_picker.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:charts_flutter/flutter.dart';
+import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'package:flushbar/flushbar.dart';
 import 'package:http/http.dart' as http;
+import 'package:path/path.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class SensingPage extends StatefulWidget {
-  SensingPage({this.farmInfo});
+class SensingPage extends StatefulWidget{
+   SensingPage({this.farmInfo});
   final Overview farmInfo;
   @override
-  _SensingPageState createState() => _SensingPageState();
+  _SensingPage createState() => _SensingPage();
 }
-
-class _SensingPageState extends State<SensingPage> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  SharedPreferences sharedPreferences;
-  String userId;
-  String message;
-  TextEditingController descController = new TextEditingController();
-  String responseCode;
-  _sendData() async {
-    try {
-      var uri =
-          Uri.parse("http://isf.breaktalks.com/appconnect/addsensing.php");
-      var request = http.MultipartRequest('POST', uri)
-        ..fields['field_officer_id'] = userId
-        ..fields['farm_id'] = widget.farmInfo.farmId
-        ..files
-            .add(await http.MultipartFile.fromPath('file', _aadharImage?.path))
-        ..fields['description'] = descController.text.toString();
-      var response = await request.send();
-      setState(() {
-        responseCode = responseCode;
+class _SensingPage extends State<SensingPage>{
+  // variable section
+  List<Widget> fileListThumb;
+    SharedPreferences sharedPreferences;
+      String userId;
+  List<File> fileList = new List<File>();
+Future pickFiles() async{
+  List<Widget> thumbs = new List<Widget>();
+  fileListThumb.forEach((element) {
+    thumbs.add(element);
+  });
+  
+    await FilePicker.getMultiFile(
+      type: FileType.custom,
+      allowedExtensions: ['jpg', 'jpeg', 'bmp', 'pdf', 'doc', 'docx'],
+    ).then((files){
+      if(files != null && files.length>0){
+        files.forEach((element) {
+        List<String> picExt = ['.jpg', '.jpeg', '.bmp'];
+       
+        if(picExt.contains(extension(element.path))){
+          thumbs.add(Padding(
+            padding: EdgeInsets.all(1),
+            child:new Image.file(element)
+            )
+          );
+        }
+        else
+          thumbs.add( Container(
+            child : Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children:<Widget>[
+                Icon(Icons.insert_drive_file),
+                Text(extension(element.path))
+              ]
+            )
+          ));
+          fileList.add(element);          
       });
-      if (response.statusCode == 200) {
-        print("Uploaded Sucessfully");
-      } else {
-        print(response.statusCode);
+        setState(() {
+          fileListThumb = thumbs;
+        });
       }
-    } catch (e) {
-      print(e);
+    });
+  }
+List<Map> toBase64(List<File> fileList){
+  List<Map> s = new List<Map>();
+  if(fileList.length>0)
+    fileList.forEach((element){
+      Map a = {
+        'fileName': basename(element.path),
+        'encoded' : base64Encode(element.readAsBytesSync())
+      };
+      s.add(a);
+    });
+  return s;
+}
+Future<bool> httpSend(Map params) async
+{
+  String endpoint = "http://isf.breaktalks.com/appconnect/addsensing.php";
+  return await http.post(endpoint, body: params)
+  .then((response){
+    print(response.body);
+    if(response.statusCode==201)
+    {
+      Map<String, dynamic> body = jsonDecode(response.body);
+      if(body['status']=='OK')
+        return true;
     }
-  }
-
-  _getData() async {
-    sharedPreferences = await SharedPreferences.getInstance();
-    setState(() {
-      if (userId == "") {
-        userId = (sharedPreferences.getString('user_id') ?? '');
-        print("test IF");
-        print(userId);
-      } else {
-        userId = (sharedPreferences.getString('user_id') ?? '');
-        print("Test Else");
-        print(userId);
-      }
-    });
-  }
-
-  File _aadharImage;
-  final picker = ImagePicker();
-  Future getAadharImage() async {
-    final image =
-        await picker.getImage(imageQuality: 50, source: ImageSource.gallery);
-    // String ipath = await ImageUtils.getimage(context);
-
-    setState(() {
-      _aadharImage = File(image.path);
-    });
-  }
-
-  Widget displaySelectedFile(File file) {
-    return new Container(
-      child: file == null
-          ? new Text('Sorry nothing selected!!')
-          : new Image.file(
-              file,
-              fit: BoxFit.contain,
-            ),
-    );
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _getData();
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    descController.clear();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+    else
+      return false;
+  });
+}
+@override
+  Widget build(BuildContext context)
+  {
+    if(fileListThumb == null)
+      fileListThumb = [
+        InkWell(
+          onTap: pickFiles,
+          child: Container(
+            child : Icon(Icons.add)
+          ),
+        )
+      ];
+    final Map params = new Map();
     return Scaffold(
-      key: _scaffoldKey,
       appBar: AppBar(
-        title: Text(
-          "Sensing",
-          style: TextStyle(color: Colors.white),
-        ),
-        leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {
-              Navigator.pop(context);
-            }),
-        actions: [],
+        title: Text("Sensing",),
       ),
-      body: SafeArea(
-          child: ListView(
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "${widget.farmInfo.farmerId} :",
-                      style: TextStyle(color: Colors.black, fontSize: 15),
-                    ),
-                    Text("${widget.farmInfo.farmerName} ",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold)),
-                  ],
-                ),
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey[400], spreadRadius: 2, blurRadius: 2)
-                ], color: Colors.white),
-              ),
-            ],
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.all(5), 
+          child: GridView.count(
+            crossAxisCount: 4,
+            children: fileListThumb,
           ),
-          SizedBox(height: 10),
-          Column(
-            children: [
-              Text(
-                "ADD NEW SENSING INFO HERE",
-                style: TextStyle(
-                    fontSize: 19.0,
-                    color: Colors.orange[300],
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 25),
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Colors.orange[50],
-                      borderRadius: BorderRadius.circular(5.0)),
-                  child: Container(
-                    width: 200,
-                    padding: const EdgeInsets.all(5),
-                    child: TextField(
-                      controller: descController,
-                      maxLines: 5,
-                      decoration: InputDecoration(
-                          hintText: 'Enter the Description',
-                          hintStyle:
-                              TextStyle(fontSize: 17.0, color: Colors.black45),
-                          border: OutlineInputBorder()),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 25),
-              Container(
-                width: 100,
-                padding: const EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                    color: Colors.orange[300],
-                    borderRadius: BorderRadius.circular(5.0)),
-                child: Center(
-                  child: _aadharImage == null
-                      ? FlatButton(
-                          onPressed: () {
-                            getAadharImage();
-                          },
-                          child: Icon(
-                            Icons.camera_alt,
-                            color: Colors.white,
-                            size: 50,
-                          ),
-                        )
-                      : Column(
-                          children: [
-                            displaySelectedFile(_aadharImage),
-                            FlatButton(
-                                onPressed: () {
-                                  setState(() {
-                                    _aadharImage = null;
-                                  });
-                                },
-                                child: Text("Retake"))
-                          ],
-                        ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      )),
+        )
+      ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.orange[300],
-        onPressed: () {
-          if (descController.text.isNotEmpty) {
-            print("Going to send Data");
-            _sendData();
-            setState(() {
-              descController.clear();
-              _aadharImage = null;
-            });
-            showDialog(
-                context: context,
-                builder: (context) => LogoutOverlay(
-                      message: "Data Added Successfully",
-                    ));
-          } else {
-            showDialog(
-                context: context,
-                builder: (context) => LogoutOverlay(
-                      message: "Please Add All the Fields",
-                    ));
-          }
-        },
-        child: Icon(
-          Icons.file_upload,
-          color: Colors.white,
-        ),
-      ),
+  onPressed: () async{
+    List<Map> attch = toBase64(fileList);
+    params["attachment"] = jsonEncode(attch);
+    httpSend(params).then((sukses){
+      if(sukses==true){
+          Flushbar(
+            message: "success :)",
+            icon: Icon(
+              Icons.check,
+              size: 28.0,
+              color: Colors.blue[300],
+              ),
+            duration: Duration(seconds: 3),
+            leftBarIndicatorColor: Colors.blue[300],
+          ).show(context);
+        }
+        else
+          Flushbar(
+            message: "fail :(",
+            icon: Icon(
+              Icons.error_outline,
+              size: 28.0,
+              color: Colors.blue[300],
+              ),
+            duration: Duration(seconds: 3),
+            leftBarIndicatorColor: Colors.red[300],
+          ).show(context);
+    });
+  },
+  tooltip: 'Upload File',
+  child: const Icon(Icons.cloud_upload),
+),
     );
   }
 }

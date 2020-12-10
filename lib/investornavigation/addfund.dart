@@ -90,7 +90,7 @@ class _MyAppsState extends State<MyApps> {
                 context, MaterialPageRoute(builder: (context) => investorss()));
           },
         ),
-        title: Text("Add Funds",
+        title: Text("EOI",
             textAlign: TextAlign.center,
             style: (TextStyle(fontFamily: 'JosefinSans', color: Colors.white))),
         actions: [

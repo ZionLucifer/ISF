@@ -409,7 +409,6 @@ class _DetailRequestIDState extends State<DetailRequestID> {
                                     //     .expenseList.availableBalance
                                     //     .toString());
                                     if (value.isEmpty) {
-
                                       return "Cannot Leave it Empty";
                                     }
                                     // if (subtotal > availableCost) {
@@ -529,7 +528,7 @@ class _DetailRequestIDState extends State<DetailRequestID> {
                                 child: RaisedButton(
                                   onPressed: () async {
                                     if (_formKey.currentState.validate() &&
-                                        _image != null &&
+                                        _image != null ||
                                         _signImage != null) {
                                       print("Add button Clicked");
                                       await _sendData(_image?.path, _signImage);
@@ -546,19 +545,20 @@ class _DetailRequestIDState extends State<DetailRequestID> {
                                                 message: "Added Expense",
                                               ));
                                     } else {
-
-                                      if(  farmid.isEmpty || patricularsController.text.isEmpty || noOfUnitsController.text.isEmpty || unitCostController.text.isEmpty){
+                                      if (farmid.isEmpty ||
+                                          patricularsController.text.isEmpty ||
+                                          noOfUnitsController.text.isEmpty ||
+                                          unitCostController.text.isEmpty) {
                                         showDialog(
                                             context: context,
                                             builder: (_) => LogoutOverlay(
                                                 message: "Enter All fields"));
-                                      }else if ( _image == null ||
+                                      } else if (_image == null &&
                                           _signImage == null) {
                                         showDialog(
                                             context: context,
-                                            builder: (_) =>
-                                                LogoutOverlay(
-                                                    message: "Please Add Image"));
+                                            builder: (_) => LogoutOverlay(
+                                                message: "Please Add Image"));
                                       }
                                     }
                                   },
