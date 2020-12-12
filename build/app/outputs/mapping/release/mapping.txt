@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.5.64
 # min_api: 16
-# pg_map_id: 789d01c
+# pg_map_id: 6ef798e
 android.support.v4.app.INotificationSideChannel -> android.support.v4.app.a:
     void cancel(java.lang.String,int,java.lang.String) -> a
     void cancelAll(java.lang.String) -> a
@@ -6635,6 +6635,43 @@ com.tekartik.sqflite.operation.OperationResult -> b.e.a.f.g:
     void success(java.lang.Object) -> a
 com.tekartik.sqflite.operation.SqlErrorInfo -> b.e.a.f.h:
     java.util.Map getMap(com.tekartik.sqflite.operation.Operation) -> a
+com.zeno.flutter_audio_recorder.FlutterAudioRecorderPlugin -> b.f.a.a:
+    java.io.FileOutputStream mFileOutputStream -> g
+    long mDataSize -> l
+    java.lang.String mStatus -> h
+    io.flutter.plugin.common.PluginRegistry$Registrar registrar -> a
+    int bufferSize -> f
+    int mSampleRate -> b
+    android.media.AudioRecord mRecorder -> c
+    double mAveragePower -> j
+    io.flutter.plugin.common.MethodChannel$Result _result -> m
+    java.lang.Thread mRecordingThread -> k
+    java.lang.String mExtension -> e
+    java.lang.String mFilePath -> d
+    double mPeakPower -> i
+    void WriteWaveFileHeader(java.io.FileOutputStream,long,long,long,int,long) -> a
+    void access$000(com.zeno.flutter_audio_recorder.FlutterAudioRecorderPlugin) -> a
+    short[] byte2short(byte[]) -> a
+    void copyWaveFile(java.lang.String,java.lang.String) -> a
+    void deleteTempFile() -> a
+    void onMethodCall(io.flutter.plugin.common.MethodCall,io.flutter.plugin.common.MethodChannel$Result) -> a
+    void registerWith(io.flutter.plugin.common.PluginRegistry$Registrar) -> a
+    int getDuration() -> b
+    void handleCurrent(io.flutter.plugin.common.MethodCall,io.flutter.plugin.common.MethodChannel$Result) -> b
+    void updatePowers(byte[]) -> b
+    java.lang.String getTempFilename() -> c
+    void handleInit(io.flutter.plugin.common.MethodCall,io.flutter.plugin.common.MethodChannel$Result) -> c
+    void handleHasPermission() -> d
+    void handlePause(io.flutter.plugin.common.MethodCall,io.flutter.plugin.common.MethodChannel$Result) -> d
+    void handleResume(io.flutter.plugin.common.MethodCall,io.flutter.plugin.common.MethodChannel$Result) -> e
+    boolean hasRecordPermission() -> e
+    void handleStart(io.flutter.plugin.common.MethodCall,io.flutter.plugin.common.MethodChannel$Result) -> f
+    void processAudioStream() -> f
+    void handleStop(io.flutter.plugin.common.MethodCall,io.flutter.plugin.common.MethodChannel$Result) -> g
+    void resetRecorder() -> g
+    void startThread() -> h
+com.zeno.flutter_audio_recorder.FlutterAudioRecorderPlugin$1 -> b.f.a.a$a:
+    com.zeno.flutter_audio_recorder.FlutterAudioRecorderPlugin this$0 -> a
 io.flutter.FlutterInjector -> c.a.a:
     io.flutter.embedding.engine.loader.FlutterLoader flutterLoader -> b
     boolean shouldLoadNative -> a
@@ -9292,3 +9329,149 @@ li.jod.search_choices.SearchChoicesPlugin -> e.a.a.a:
     void onMethodCall(io.flutter.plugin.common.MethodCall,io.flutter.plugin.common.MethodChannel$Result) -> a
     void onAttachedToEngine(io.flutter.embedding.engine.plugins.FlutterPlugin$FlutterPluginBinding) -> b
 li.jod.search_choices.SearchChoicesPlugin$Companion -> e.a.a.a$a:
+xyz.luan.audioplayers.AudioplayersPlugin -> f.a.a.a:
+    java.util.Map mediaPlayers -> b
+    java.lang.Runnable positionUpdates -> d
+    android.os.Handler handler -> c
+    boolean seekFinish -> f
+    java.util.logging.Logger LOGGER -> g
+    android.content.Context context -> e
+    io.flutter.plugin.common.MethodChannel channel -> a
+    void access$100(xyz.luan.audioplayers.AudioplayersPlugin) -> a
+    java.util.Map access$200(java.lang.String,java.lang.Object) -> a
+    boolean access$302(xyz.luan.audioplayers.AudioplayersPlugin,boolean) -> a
+    xyz.luan.audioplayers.Player getPlayer(java.lang.String,java.lang.String) -> a
+    void handleCompletion(xyz.luan.audioplayers.Player) -> a
+    void handleError(xyz.luan.audioplayers.Player,java.lang.String) -> a
+    void onDetachedFromEngine(io.flutter.embedding.engine.plugins.FlutterPlugin$FlutterPluginBinding) -> a
+    void onMethodCall(io.flutter.plugin.common.MethodCall,io.flutter.plugin.common.MethodChannel$Result) -> a
+    void startPositionUpdates() -> a
+    boolean access$300(xyz.luan.audioplayers.AudioplayersPlugin) -> b
+    java.util.Map buildArguments(java.lang.String,java.lang.Object) -> b
+    void handleDuration(xyz.luan.audioplayers.Player) -> b
+    void handleMethodCall(io.flutter.plugin.common.MethodCall,io.flutter.plugin.common.MethodChannel$Result) -> b
+    void onAttachedToEngine(io.flutter.embedding.engine.plugins.FlutterPlugin$FlutterPluginBinding) -> b
+    void stopPositionUpdates() -> b
+    void handleIsPlaying(xyz.luan.audioplayers.Player) -> c
+    void handleSeekComplete(xyz.luan.audioplayers.Player) -> d
+xyz.luan.audioplayers.AudioplayersPlugin$1 -> f.a.a.a$a:
+xyz.luan.audioplayers.AudioplayersPlugin$UpdateCallback -> f.a.a.a$b:
+    java.lang.ref.WeakReference audioplayersPlugin -> d
+    java.lang.ref.WeakReference handler -> c
+    java.lang.ref.WeakReference channel -> b
+    java.lang.ref.WeakReference mediaPlayers -> a
+xyz.luan.audioplayers.ByteDataSource -> f.a.a.b:
+    byte[] data -> a
+xyz.luan.audioplayers.Player -> f.a.a.c:
+    void configAttributes(boolean,boolean,boolean,android.content.Context) -> a
+    int getCurrentPosition() -> a
+    boolean objectEquals(java.lang.Object,java.lang.Object) -> a
+    void play(android.content.Context) -> a
+    void seek(int) -> a
+    void setDataSource(android.media.MediaDataSource,android.content.Context) -> a
+    void setPlayingRoute(java.lang.String,android.content.Context) -> a
+    int setRate(double) -> a
+    void setReleaseMode(xyz.luan.audioplayers.ReleaseMode) -> a
+    void setUrl(java.lang.String,boolean,android.content.Context) -> a
+    int getDuration() -> b
+    void setVolume(double) -> b
+    java.lang.String getPlayerId() -> c
+    boolean isActuallyPlaying() -> d
+    void pause() -> e
+    void release() -> f
+    void stop() -> g
+xyz.luan.audioplayers.ReleaseMode -> f.a.a.d:
+    xyz.luan.audioplayers.ReleaseMode RELEASE -> a
+    xyz.luan.audioplayers.ReleaseMode LOOP -> b
+    xyz.luan.audioplayers.ReleaseMode STOP -> c
+    xyz.luan.audioplayers.ReleaseMode[] $VALUES -> d
+xyz.luan.audioplayers.WrappedMediaPlayer -> f.a.a.e:
+    boolean prepared -> m
+    boolean playing -> n
+    int shouldSeekTo -> o
+    boolean duckAudio -> i
+    java.lang.String playingRoute -> k
+    float rate -> f
+    boolean released -> l
+    android.media.AudioManager$OnAudioFocusChangeListener audioFocusChangeListener -> r
+    android.media.MediaPlayer player -> b
+    android.media.MediaDataSource dataSource -> d
+    xyz.luan.audioplayers.AudioplayersPlugin ref -> q
+    android.content.Context context -> p
+    android.media.AudioFocusRequest audioFocusRequest -> s
+    java.lang.String playerId -> a
+    boolean respectSilence -> g
+    double volume -> e
+    boolean stayAwake -> h
+    java.lang.String url -> c
+    xyz.luan.audioplayers.ReleaseMode releaseMode -> j
+    void configAttributes(boolean,boolean,boolean,android.content.Context) -> a
+    int getCurrentPosition() -> a
+    void play(android.content.Context) -> a
+    void seek(int) -> a
+    void setAttributes(android.media.MediaPlayer,android.content.Context) -> a
+    void setDataSource(android.media.MediaDataSource,android.content.Context) -> a
+    void setMediaSource(android.media.MediaDataSource) -> a
+    void setPlayingRoute(java.lang.String,android.content.Context) -> a
+    int setRate(double) -> a
+    void setReleaseMode(xyz.luan.audioplayers.ReleaseMode) -> a
+    void setSource(java.lang.String) -> a
+    void setUrl(java.lang.String,boolean,android.content.Context) -> a
+    void actuallyPlay(android.content.Context) -> b
+    int getDuration() -> b
+    void setVolume(double) -> b
+    android.media.MediaPlayer createPlayer(android.content.Context) -> c
+    java.lang.String getPlayerId() -> c
+    boolean isActuallyPlaying() -> d
+    void pause() -> e
+    void release() -> f
+    void stop() -> g
+    android.media.AudioManager getAudioManager() -> h
+xyz.luan.audioplayers.WrappedMediaPlayer$1 -> f.a.a.e$a:
+    android.content.Context val$context -> a
+    xyz.luan.audioplayers.WrappedMediaPlayer this$0 -> b
+xyz.luan.audioplayers.WrappedSoundPool -> f.a.a.f:
+    java.lang.Integer soundId -> e
+    java.lang.Integer streamId -> f
+    android.media.SoundPool soundPool -> k
+    java.util.Map urlToPlayers -> m
+    boolean looping -> i
+    boolean loading -> j
+    float rate -> d
+    float volume -> c
+    java.lang.String playerId -> a
+    boolean playing -> g
+    java.util.Map soundIdToPlayer -> l
+    boolean paused -> h
+    java.lang.String url -> b
+    java.lang.Integer access$100(xyz.luan.audioplayers.WrappedSoundPool) -> a
+    boolean access$402(xyz.luan.audioplayers.WrappedSoundPool,boolean) -> a
+    void configAttributes(boolean,boolean,boolean,android.content.Context) -> a
+    byte[] downloadUrl(java.net.URL) -> a
+    java.lang.String getAudioPath(java.lang.String,boolean) -> a
+    int getCurrentPosition() -> a
+    java.io.File loadTempFileFromNetwork(java.lang.String) -> a
+    void play(android.content.Context) -> a
+    void seek(int) -> a
+    void setDataSource(android.media.MediaDataSource,android.content.Context) -> a
+    void setPlayingRoute(java.lang.String,android.content.Context) -> a
+    int setRate(double) -> a
+    void setReleaseMode(xyz.luan.audioplayers.ReleaseMode) -> a
+    void setUrl(java.lang.String,boolean,android.content.Context) -> a
+    java.lang.String access$300(xyz.luan.audioplayers.WrappedSoundPool) -> b
+    int getDuration() -> b
+    void setVolume(double) -> b
+    java.lang.UnsupportedOperationException unsupportedOperation(java.lang.String) -> b
+    boolean access$500(xyz.luan.audioplayers.WrappedSoundPool) -> c
+    java.lang.String getPlayerId() -> c
+    void access$600(xyz.luan.audioplayers.WrappedSoundPool) -> d
+    boolean isActuallyPlaying() -> d
+    void pause() -> e
+    void release() -> f
+    void stop() -> g
+    java.util.Map access$000() -> h
+    java.util.Map access$200() -> i
+    android.media.SoundPool createSoundPool() -> j
+    void start() -> k
+    android.media.SoundPool unsafeBuildLegacySoundPool() -> l
+xyz.luan.audioplayers.WrappedSoundPool$1 -> f.a.a.f$a:

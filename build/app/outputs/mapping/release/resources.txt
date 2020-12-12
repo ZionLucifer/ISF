@@ -9,6 +9,7 @@ Referenced Strings:
   .flutter.image_provider
   .jpg
   .mp4
+  .temp
   /1
   /file_picker/
   /scaled_
@@ -35,6 +36,7 @@ Referenced Strings:
   AccessibilityChannel
   AccountAccessor
   AmbientEnabled
+  AndroidAudioRecorder
   AndroidKeyProcessor
   ApertureValue
   AppLifecycleState.detached
@@ -307,6 +309,7 @@ Referenced Strings:
   LIGHT_IMPACT
   LOCATION_SERVICES_DISABLED
   LONG_PRESS
+  LOOP
   LOWER_CASE_WITH_DASHES
   LOWER_CASE_WITH_UNDERSCORES
   LTR
@@ -323,6 +326,12 @@ Referenced Strings:
   LocalizationChannel
   LocationClientImpl
   LocationServices.API
+  MEDIA_ERROR_IO
+  MEDIA_ERROR_MALFORMED
+  MEDIA_ERROR_SERVER_DIED
+  MEDIA_ERROR_SYSTEM
+  MEDIA_ERROR_TIMED_OUT
+  MEDIA_ERROR_UNSUPPORTED
   MEDIUM_IMPACT
   MODULE_ID
   MODULE_VERSION
@@ -404,12 +413,15 @@ Referenced Strings:
   PlatformPlugin
   PlatformViewsChannel
   PlatformViewsController
+  PlayerMode.LOW_LATENCY
+  PlayerMode.MEDIA_PLAYER
   PreviewImageLength
   PreviewImageStart
   PrimaryChromaticities
   PrivateApi
   R::
   REAR
+  RELEASE
   REMOVE
   REPLACE
   RESOLUTION_REQUIRED
@@ -455,6 +467,7 @@ Referenced Strings:
   SSHORT
   STANDARD
   STARTED
+  STOP
   STRING
   SUCCESS
   SUCCESS_CACHE
@@ -596,6 +609,7 @@ Referenced Strings:
   VP8X
   ViewCompat
   WORDS
+  WSP
   Weekly
   WhiteBalance
   WhitePoint
@@ -674,6 +688,8 @@ Referenced Strings:
   android.permission.ACCESS_FINE_LOCATION
   android.permission.CAMERA
   android.permission.READ_EXTERNAL_STORAGE
+  android.permission.RECORD_AUDIO
+  android.permission.WRITE_EXTERNAL_STO...
   android.resource://
   android.selfDisplayName
   android.settings.APPLICATION_DETAILS_...
@@ -732,9 +748,16 @@ Referenced Strings:
   args
   arguments
   audio
+  audio.onComplete
+  audio.onCurrentPosition
+  audio.onDuration
+  audio.onError
+  audio.onSeekComplete
+  audioFormat
   autoCancel
   autocorrect
   autofill
+  averagePower
   b
   background
   background_mode
@@ -761,6 +784,7 @@ Referenced Strings:
   bot
   buildingsEnabled
   buttCap
+  bytes
   c
   cached_engine_id
   call
@@ -884,6 +908,7 @@ Referenced Strings:
   com.google.app.id
   com.google.common.base.Strings
   com.tekartik.sqflite
+  com.zeno.flutter_audio_recorder.Flutt...
   commit
   common_google_play_services_api_unava...
   common_google_play_services_invalid_a...
@@ -918,6 +943,7 @@ Referenced Strings:
   creditCardExpirationYear
   creditCardNumber
   creditCardSecurityCode
+  current
   custom
   customCap
   d
@@ -954,6 +980,9 @@ Referenced Strings:
   dot
   draggable
   drawable
+  duckAudio
+  duration
+  earpieceOrSpeakersToggle
   editingValue
   email
   emailAddress
@@ -973,6 +1002,7 @@ Referenced Strings:
   expirationTime
   extendedAddress
   extendedPostalCode
+  extension
   extent
   extras
   failing_client_id
@@ -1007,6 +1037,7 @@ Referenced Strings:
   flutter/textinput
   flutterPluginBinding
   flutter_assets
+  flutter_audio_recorder
   flutter_image_picker_error_code
   flutter_image_picker_error_message
   flutter_image_picker_image_path
@@ -1037,6 +1068,7 @@ Referenced Strings:
   getConstructorId
   getCurrentPosition
   getDatabasesPath
+  getDuration
   getExternalCacheDirectories
   getExternalStorageDirectories
   getJavaLangAccess
@@ -1066,6 +1098,7 @@ Referenced Strings:
   groupKey
   guava.concurrent.generate_cancellatio...
   handled
+  hasPermissions
   heading
   height
   help
@@ -1096,8 +1129,10 @@ Referenced Strings:
   indeterminate
   indoorEnabled
   infoWindow
+  init
   initialCameraPosition
   initialize
+  initialized
   inputAction
   inputType
   input_method
@@ -1114,7 +1149,9 @@ Referenced Strings:
   isBot
   isGesture
   isImportant
+  isLocal
   isLocationServiceEnabled
+  isMeteringEnabled
   isPrimary
   is_mocked
   java.
@@ -1190,6 +1227,7 @@ Referenced Strings:
   millisecondsSinceEpoch
   minMaxZoomPreference
   minute
+  mode
   month
   move
   ms
@@ -1248,8 +1286,11 @@ Referenced Strings:
   password
   path
   pattern
+  pause
+  paused
   payload
   pcampaignid
+  peakPower
   pendingIntent
   pendingNotificationRequests
   pending_intent
@@ -1276,7 +1317,12 @@ Referenced Strings:
   plainCodePoint
   platformBrightness
   platformSpecifics
+  play
+  playBytes
   playSound
+  playbackRate
+  playerId
+  playingRoute
   plugins
   plugins.flutter.io/google_maps
   plugins.flutter.io/google_maps_
@@ -1316,9 +1362,12 @@ Referenced Strings:
   read
   readOnly
   read_external_storage_denied
+  recording
   recovered
   recoveredInTransaction
   registerWith
+  release
+  releaseMode
   remoteInputs
   remove
   removeObserver
@@ -1344,8 +1393,10 @@ Referenced Strings:
   resizeUpRight
   resizeUpRightDownLeft
   resolution
+  respectSilence
   restricted_profile
   result
+  resume
   retrieve
   rotateGesturesEnabled
   rotation
@@ -1355,6 +1406,7 @@ Referenced Strings:
   rw
   rwt
   sClassLoader
+  sampleRate
   samsung
   scanCode
   schedule
@@ -1363,6 +1415,7 @@ Referenced Strings:
   scrollGesturesEnabled
   search_choices
   second
+  seek
   selectNotification
   selectionBase
   selectionExtent
@@ -1374,14 +1427,20 @@ Referenced Strings:
   service_googleme
   setAsGroupSummary
   setBool
+  setDataSource
   setDirection
   setDouble
   setInitialRoute
   setInt
   setLocale
+  setPlaybackRate
+  setPlayingRoute
+  setReleaseMode
   setString
   setStringList
+  setUrl
   setValue
+  setVolume
   show
   showDailyAtTime
   showProgress
@@ -1394,15 +1453,21 @@ Referenced Strings:
   sound
   source
   southwest
+  speakers
   speed
   speed_accuracy
   sql
   sqlite_error
   squareCap
+  start
   startCap
+  status
   statusBarColor
   statusBarIconBrightness
   statusCode
+  stayAwake
+  stop
+  stopped
   storage
   streetAddress
   string
@@ -1457,9 +1522,11 @@ Referenced Strings:
   unknown
   unknown_activity
   unknown_path
+  unset
   update
   updateViewLayout
   uri
+  url
   user
   username
   value
@@ -1471,6 +1538,7 @@ Referenced Strings:
   viewFocused
   viewType
   visible
+  volume
   w
   wa
   wait
@@ -1480,6 +1548,7 @@ Referenced Strings:
   write
   wt
   x
+  xyz.luan/audioplayers
   y
   year
   yes
@@ -1491,7 +1560,6 @@ Referenced Strings:
   zoomIn
   zoomOut
   zoomTo
-Marking id:hybrid:2131034159 used because its prefix matches string pool constant hybrid
 Marking id:accessibility_action_clickable_span:2131034112 used because its prefix matches string pool constant accessibility
 Marking id:accessibility_custom_action_0:2131034113 used because its prefix matches string pool constant accessibility
 Marking id:accessibility_custom_action_1:2131034114 used because its prefix matches string pool constant accessibility
@@ -1525,6 +1593,25 @@ Marking id:accessibility_custom_action_6:2131034141 used because its prefix matc
 Marking id:accessibility_custom_action_7:2131034142 used because its prefix matches string pool constant accessibility
 Marking id:accessibility_custom_action_8:2131034143 used because its prefix matches string pool constant accessibility
 Marking id:accessibility_custom_action_9:2131034144 used because its prefix matches string pool constant accessibility
+Marking id:time:2131034188 used because its prefix matches string pool constant time
+Marking id:light:2131034165 used because its prefix matches string pool constant light
+Marking id:title:2131034189 used because its prefix matches string pool constant title
+Marking attr:alpha:2130771968 used because its prefix matches string pool constant alpha
+Marking layout:custom_dialog:2131165184 used because its prefix matches string pool constant custom
+Marking id:action_container:2131034145 used because its prefix matches string pool constant action
+Marking id:action_divider:2131034146 used because its prefix matches string pool constant action
+Marking id:action_image:2131034147 used because its prefix matches string pool constant action
+Marking id:action_text:2131034148 used because its prefix matches string pool constant action
+Marking id:actions:2131034149 used because its prefix matches string pool constant action
+Marking id:text:2131034186 used because its prefix matches string pool constant text
+Marking id:text2:2131034187 used because its prefix matches string pool constant text
+Marking integer:status_bar_notification_info_maxnum:2131099649 used because its prefix matches string pool constant status
+Marking string:status_bar_notification_info_overflow:2131296274 used because its prefix matches string pool constant status
+Marking attr:latLngBoundsNorthEastLatitude:2130771992 used because its prefix matches string pool constant latLngBounds
+Marking attr:latLngBoundsNorthEastLongitude:2130771993 used because its prefix matches string pool constant latLngBounds
+Marking attr:latLngBoundsSouthWestLatitude:2130771994 used because its prefix matches string pool constant latLngBounds
+Marking attr:latLngBoundsSouthWestLongitude:2130771995 used because its prefix matches string pool constant latLngBounds
+Marking id:hybrid:2131034159 used because its prefix matches string pool constant hybrid
 Marking xml:flutter_image_picker_file_paths:2131492864 used because its prefix matches string pool constant flutter
 Marking attr:colorScheme:2130771979 used because its prefix matches string pool constant color
 Marking attr:android_color:-1 used because its prefix matches string pool constant android
@@ -1547,8 +1634,6 @@ Marking attr:android_endX:-1 used because its prefix matches string pool constan
 Marking attr:android_endY:-1 used because its prefix matches string pool constant android
 Marking attr:android_tileMode:-1 used because its prefix matches string pool constant android
 Marking attr:android_offset:-1 used because its prefix matches string pool constant android
-Marking id:time:2131034188 used because its prefix matches string pool constant time
-Marking id:light:2131034165 used because its prefix matches string pool constant light
 Marking attr:mapType:2130771997 used because its prefix matches string pool constant mapType
 Marking color:notification_action_color_filter:2130837515 used because its prefix matches string pool constant notification
 Marking color:notification_icon_bg_color:2130837516 used because its prefix matches string pool constant notification
@@ -1592,16 +1677,6 @@ Marking id:icon_group:2131034161 used because its prefix matches string pool con
 Marking id:icon_only:2131034162 used because its prefix matches string pool constant icon
 Marking attr:imageAspectRatio:2130771990 used because its prefix matches string pool constant image
 Marking attr:imageAspectRatioAdjust:2130771991 used because its prefix matches string pool constant image
-Marking id:title:2131034189 used because its prefix matches string pool constant title
-Marking attr:alpha:2130771968 used because its prefix matches string pool constant alpha
-Marking layout:custom_dialog:2131165184 used because its prefix matches string pool constant custom
-Marking id:action_container:2131034145 used because its prefix matches string pool constant action
-Marking id:action_divider:2131034146 used because its prefix matches string pool constant action
-Marking id:action_image:2131034147 used because its prefix matches string pool constant action
-Marking id:action_text:2131034148 used because its prefix matches string pool constant action
-Marking id:actions:2131034149 used because its prefix matches string pool constant action
-Marking id:text:2131034186 used because its prefix matches string pool constant text
-Marking id:text2:2131034187 used because its prefix matches string pool constant text
 Marking attr:cameraBearing:2130771971 used because its prefix matches string pool constant camera
 Marking attr:cameraMaxZoomPreference:2130771972 used because its prefix matches string pool constant camera
 Marking attr:cameraMinZoomPreference:2130771973 used because its prefix matches string pool constant camera
@@ -1610,10 +1685,6 @@ Marking attr:cameraTargetLng:2130771975 used because its prefix matches string p
 Marking attr:cameraTilt:2130771976 used because its prefix matches string pool constant camera
 Marking attr:cameraZoom:2130771977 used because its prefix matches string pool constant camera
 Marking color:secondary_text_default_material_light:2130837518 used because its prefix matches string pool constant second
-Marking attr:latLngBoundsNorthEastLatitude:2130771992 used because its prefix matches string pool constant latLngBounds
-Marking attr:latLngBoundsNorthEastLongitude:2130771993 used because its prefix matches string pool constant latLngBounds
-Marking attr:latLngBoundsSouthWestLatitude:2130771994 used because its prefix matches string pool constant latLngBounds
-Marking attr:latLngBoundsSouthWestLongitude:2130771995 used because its prefix matches string pool constant latLngBounds
 Marking id:none:2131034168 used because its prefix matches string pool constant none
 Marking id:dark:2131034156 used because its prefix matches string pool constant dark
 Resource Reference Graph:
@@ -1759,6 +1830,7 @@ attr:alpha:2130771968,
    id:time:2131034188,
    id:title:2131034189,
    integer:google_play_services_version:2131099648,
+   integer:status_bar_notification_info_maxnum:2131099649,
    layout:custom_dialog:2131165184,
    layout:notification_action:2131165185,
    layout:notification_action_tombstone:2131165186,
@@ -1783,6 +1855,7 @@ attr:alpha:2130771968,
    string:common_google_play_services_updating_text:2131296269,
    string:common_google_play_services_wear_update_text:2131296270,
    string:common_open_on_phone:2131296271,
+   string:status_bar_notification_info_overflow:2131296274,
    style:LaunchTheme:2131361792,
    xml:flutter_image_picker_file_paths:2131492864,
    attr:android_color:-1,

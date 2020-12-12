@@ -33,11 +33,11 @@ class _PromodelState extends State<Promodel> {
     var data = json.decode(response.body);
     print(data);
     print('token$userId');
-    // if (sharedPreferences.getString("user_id") == data[0]['invester_id']) {
-    //   setState(() {
-    //     return json.decode(response.body);
-    //   });
-    // }
+    if (sharedPreferences.getString("user_id") == data[0]['invester_id']) {
+      setState(() {
+        return json.decode(response.body);
+      });
+    }
     return data; 
  }
 

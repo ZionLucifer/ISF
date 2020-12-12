@@ -184,7 +184,7 @@ class _AddNewRecordState extends State<AddNewRecord> {
                       child: DropdownButtonFormField(
                         items: activities
                             .map((e) =>
-                                DropdownMenuItem(child: Text('  $e'), value: e))
+                                DropdownMenuItem(child: Text(' $e'), value: e))
                             .toList(),
                         value: activity,
                         onChanged: (val) {
