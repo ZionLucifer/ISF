@@ -6,6 +6,7 @@ INJECTED from /Users/isac/Developer/BREAK TALKS/Github/ISF/android/app/src/main/
 INJECTED from /Users/isac/Developer/BREAK TALKS/Github/ISF/android/app/src/main/AndroidManifest.xml:1:1-56:12
 MERGED from /Users/isac/Developer/BREAK TALKS/Github/ISF/android/app/src/main/AndroidManifest.xml:1:1-56:12
 MERGED from [:file_picker] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:audioplayers] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/audioplayers/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:sqflite] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:search_choices] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/search_choices/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:google_maps_flutter] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/google_maps_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
@@ -16,6 +17,7 @@ MERGED from [:flutter_keyboard_visibility] /Users/isac/Developer/BREAK TALKS/Git
 MERGED from [:path_provider] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:flutter_local_notifications] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:shared_preferences] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_audio_recorder] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/flutter_audio_recorder/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/isac/.gradle/caches/transforms-2/files-2.1/4ebe119ef6f785c66e1535b687fc1de5/play-services-maps-17.0.0/AndroidManifest.xml:17:1-38:12
 MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/isac/.gradle/caches/transforms-2/files-2.1/2837c83b2079fca3ed1114c97ed04513/play-services-location-17.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/isac/.gradle/caches/transforms-2/files-2.1/2f220e4626961757d61af53add94b7ee/play-services-base-17.0.0/AndroidManifest.xml:17:1-29:12
@@ -163,6 +165,8 @@ INJECTED from /Users/isac/Developer/BREAK TALKS/Github/ISF/android/app/src/main/
 INJECTED from /Users/isac/Developer/BREAK TALKS/Github/ISF/android/app/src/main/AndroidManifest.xml
 MERGED from [:file_picker] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:file_picker] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/file_picker/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:audioplayers] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/audioplayers/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-44
+MERGED from [:audioplayers] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/audioplayers/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-44
 MERGED from [:sqflite] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:search_choices] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/search_choices/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
@@ -183,6 +187,8 @@ MERGED from [:flutter_local_notifications] /Users/isac/Developer/BREAK TALKS/Git
 MERGED from [:flutter_local_notifications] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_audio_recorder] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/flutter_audio_recorder/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_audio_recorder] /Users/isac/Developer/BREAK TALKS/Github/ISF/build/flutter_audio_recorder/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/isac/.gradle/caches/transforms-2/files-2.1/4ebe119ef6f785c66e1535b687fc1de5/play-services-maps-17.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/isac/.gradle/caches/transforms-2/files-2.1/4ebe119ef6f785c66e1535b687fc1de5/play-services-maps-17.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/isac/.gradle/caches/transforms-2/files-2.1/2837c83b2079fca3ed1114c97ed04513/play-services-location-17.0.0/AndroidManifest.xml:5:5-44
