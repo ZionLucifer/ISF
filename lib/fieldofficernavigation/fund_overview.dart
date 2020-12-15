@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:apps/fieldofficernavigation/expense_overview.dart';
+// import 'package:apps/fieldofficernavigation/expense_overview.dart';
 import 'package:apps/model/fo_overview.dart';
 import 'package:apps/model/overview.dart';
 import 'package:flutter/material.dart';
@@ -161,7 +161,7 @@ class _FundOverviewState extends State<FundOverview> {
               Text(
                 int.parse(farmdets.farmstatus) != 0
                     ? 'Not Started'
-                    : 'In progress',
+                    : 'Active',
                 style: TextStyle(
                     color: int.parse(farmdets.farmstatus) == 0
                         ? Colors.green

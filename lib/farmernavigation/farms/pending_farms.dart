@@ -14,8 +14,6 @@ class PendingFarms extends StatefulWidget {
 class _PendingFarmsState extends State<PendingFarms> {
   SharedPreferences sharedPreferences;
   String userId, mobile;
-
-
   _getData() async {
     sharedPreferences = await SharedPreferences.getInstance();
     setState(() {

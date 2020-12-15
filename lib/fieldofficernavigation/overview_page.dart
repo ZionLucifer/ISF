@@ -130,7 +130,7 @@ class _OverviewPageState extends State<OverviewPage> {
                   if (snapshot.hasData) {
                   List<Overview> overview = snapshot.data;
 
-                  overview.removeWhere((e) => e.status != '0');
+                  // overview.removeWhere((e) => e.status != '0');
                   return SingleChildScrollView(
                     child: Column(
                       children: [
@@ -154,7 +154,11 @@ class _OverviewPageState extends State<OverviewPage> {
                   }
                 }
                 return Center(
-                    child: Container(child: new CircularProgressIndicator()));
+                    child: Container(child: 
+                    // Text('Error'),
+                     new CircularProgressIndicator(),
+                     ),
+                     );
               }),
         ),
       ),
@@ -181,6 +185,9 @@ class OverVierHead extends StatelessWidget {
        sign = '+';
     }else
      sign = '-';
+     print(overmod.farmcount);
+     print(overmod.farmercount);
+    
 
     Widget grid(String one, String two) {
       return Container(
@@ -225,8 +232,9 @@ class OverVierHead extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Expanded(child: grid('Farmer Count', overmod.farmcount)),
+                Expanded(child: grid('Farmer Count', overmod.farmercount)),
                 Expanded(child: grid('Farm Count', overmod.farmcount)),
+            
               ],
             ),
             Row(
@@ -311,9 +319,9 @@ class FarmListViews extends StatelessWidget {
         children: [
           row('Farmer Name', '${farmList.farmerName ?? 'N\A'}'),
           row('Location', '${farmList.baseLocation ?? 'N\A'}'),
-          row('Crops', '${farmList.crops ?? 'N\A'}'),
+          // row('Crops', '${farmList.crops ?? 'N\A'}'),
           row('Status', '${farmList.status ?? 'N\A'}'),
-          row('Crop', '${farmList.crops ?? 'N\A'}'),
+          row('Crop', '${farmList.crops ?? 'N\A'}')
         ],
       ),
       trailing: Container(

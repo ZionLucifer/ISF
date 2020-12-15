@@ -7,34 +7,20 @@ import '../Utils/Image/PickImage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
 
 class AddNewNotification extends StatefulWidget {
   final Overview farmInfo;
-   final Function onSaved;
-  AddNewNotification({this.farmInfo, this.onSaved});
+  AddNewNotification({this.farmInfo});
   @override
   _AddNewNotificationState createState() => _AddNewNotificationState();
 }
 
-enum RecordingState {
-  UnSet,
-  Set,
-  Recording,
-  Stopped,
-}
-
 class _AddNewNotificationState extends State<AddNewNotification> {
-  RecordingState _recordingState = RecordingState.UnSet;
-  String _recordText = 'Click To Start';
   SharedPreferences sharedPreferences;
   String userId, mobile;
   TextEditingController titleController = new TextEditingController();
   TextEditingController descriptionController = new TextEditingController();
   File _image;
-    // Recorder properties
-  FlutterAudioRecorder audioRecorder;
-  
   // final picker = ImagePicker();
   Widget displaySelectedFile(File file) {
     return new Container(
@@ -99,20 +85,7 @@ class _AddNewNotificationState extends State<AddNewNotification> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    FlutterAudioRecorder.hasPermissions.then((hasPermision) {
-      if (hasPermision) {
-        _recordingState = RecordingState.Set;
-        // _recordIcon = Icons.mic;
-        _recordText = 'Record';
-      }
-    });
     _getData();
-  }
-   @override
-  void dispose() {
-    _recordingState = RecordingState.UnSet;
-    audioRecorder = null;
-    super.dispose();
   }
 
   @override
@@ -144,7 +117,6 @@ class _AddNewNotificationState extends State<AddNewNotification> {
                     topRight: const Radius.circular(40.0))),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 10, bottom: 50),
@@ -202,65 +174,8 @@ class _AddNewNotificationState extends State<AddNewNotification> {
                 ),
                 SizedBox(height: 20),
                 Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
-                      color: Colors.orange[300],
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    // crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Center(
-                          child: FlatButton(
-                            onPressed: () {},
-                            child: Icon(Icons.mic_rounded,
-                                color: Colors.white, size: 50),
-                          ),
-                        ),
-                      ),
-                      // Expanded(
-                      //   flex: 1,
-                      //   child: FlatButton(
-                      //     onPressed: () {},
-                      //     child: Icon(Icons.play_circle_fill_outlined,
-                      //         color: Colors.white, size: 50),
-                      //   ),
-                      // ),
-                      // Expanded(
-                      //   flex: 1,
-                      //   child: FlatButton(
-                      //     onPressed: () {},
-                      //     child: Icon(Icons.pause,
-                      //         color: Colors.white, size: 50),
-                      //   ),
-                      // ),
-                         Expanded(
-                        flex: 1,
-                        child: Center(
-                          child: FlatButton(
-                            onPressed: () {},
-                            child: Icon(Icons.autorenew,
-                                color: Colors.white, size: 50),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 4,
-                        child: Center(
-                          child: Text('Audio File.mp3',style: TextStyle(color: Colors.white,fontSize: 20),),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 20),
-                Container(
-                  // height: 100,
-                  // width: 300,
-
+                  height: 100,
+                  width: 100,
                   padding: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
                       color: Colors.orange[300],

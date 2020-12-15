@@ -19,6 +19,7 @@ class _CartScreenState extends State<CartScreen> {
   String farmlist;
   List<CartModel> overview;
 
+
   Future<List<CartModel>> _getOverViewInfo() async {
     var response = await http.post(
         "http://isf.breaktalks.com/appconnect/cart.php",
@@ -71,6 +72,7 @@ class _CartScreenState extends State<CartScreen> {
   void initState() {
     _getData();
     super.initState();
+  
   }
 
   @override
@@ -208,25 +210,39 @@ class _CartScreenState extends State<CartScreen> {
         });
   }
 }
+ List<int> qty = [];
 
 // ignore: must_be_immutable
-class FarmListView extends StatelessWidget {
+class FarmListView extends StatefulWidget {
   final List<CartModel> farmList1;
 
   FarmListView(this.farmList1);
 
+  @override
+  _FarmListViewState createState() => _FarmListViewState();
+}
+
+class _FarmListViewState extends State<FarmListView> {
   SharedPreferences sp;
 
+
+  void initState() {
+    // TODO: implement initState
+    super.initState();  
+      for(int i = 0; i<100 ; i++){
+      qty.add(1);
+    }
+  }
   @override
   Widget build(context) {
-    print(farmList1);
-    return farmList1.isNotEmpty
+    print(widget.farmList1);
+    return widget.farmList1.isNotEmpty
         ? ListView.builder(
             scrollDirection: Axis.vertical,
-            itemCount: farmList1.length,
+            itemCount: widget.farmList1.length,
             itemBuilder: (context, int currentIndex) {
               return createViewItem(
-                  farmList1[currentIndex], context, currentIndex);
+                  widget.farmList1[currentIndex], context, currentIndex);
             },
           )
         : Center(
@@ -234,7 +250,12 @@ class FarmListView extends StatelessWidget {
           );
   }
 
-  Widget createViewItem(CartModel farmList, BuildContext context, int index) {
+  Widget createViewItem(CartModel farmList, BuildContext context, int i) {
+    var quantity = int.tryParse(farmList.quantity);
+    // for (var i = 0; i < quantity; i++) {
+    //    qty.add(1);
+    // }
+    
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
@@ -310,6 +331,35 @@ class FarmListView extends StatelessWidget {
                       ),
                       Divider()
                     ],
+                  ),
+                  SizedBox(
+                    height: 1,
+                  ),
+                  Container(
+                    child: Flexible(
+                      child: Center(
+                        child: Row(
+                          children: <Widget>[
+                            // decrementButton(qty),
+                            // Text(
+                            //   '$qty',
+                            //   style: TextStyle(fontSize: 18.0),
+                            // ),
+      
+                            qty[i] != quantity
+                                ? new IconButton(
+                                    icon: new Icon(Icons.remove),
+                                    onPressed: () => qty[i]--)
+                            
+                                : new Container(),
+                            Text(qty[i].toString()),
+                            new IconButton(
+                                icon: new Icon(Icons.add),
+                                onPressed: () => qty[i]++)
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                   Container(
                     padding: const EdgeInsets.all(3.3),

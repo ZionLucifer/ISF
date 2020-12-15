@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:apps/components/logout_overlay.dart';
 import 'package:apps/fieldofficerdash.dart';
 import 'package:apps/fieldofficernavigation/pending_requests.dart';
 import 'package:apps/fieldofficernavigation/reports_screen.dart';
@@ -35,9 +36,9 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
   bool isGoingDown = true;
   String _farmerId;
   String _landType;
+  String _enterprise;
   String _irrigation;
   String _soilType;
-  String _enterprise;
   String _baseLocation;
   List _farmerListId = [];
   Position position;
@@ -45,8 +46,6 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
   Set<Polygon> polygons;
   File _farmImage;
   String positionvals;
-
-  get ScaffoldMessenger => null;
   Future getLocation() async {
     position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
@@ -216,7 +215,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
   void dispose() {
     super.dispose();
     acerageController.clear();
-    enterpriseController.clear();
+    // enterpriseController.clear();
     farmerScore1Controller.clear();
     farmerScore2Controller.clear();
     farmerScore3Controller.clear();
@@ -831,6 +830,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                 ),
               ),
             )),
+
         // Padding(
         //   padding: const EdgeInsets.only(top: 25.0),
         //   child: Container(
@@ -902,6 +902,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                     hintStyle: TextStyle(fontSize: 17.0, color: Colors.black45),
                     contentPadding: new EdgeInsets.symmetric(horizontal: 15.0),
                     border: InputBorder.none),
+
               ),
             ),
           ),
@@ -930,9 +931,8 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                   labelText: 'Credit Score out of 10',
                   contentPadding: new EdgeInsets.symmetric(horizontal: 15.0),
                   border: InputBorder.none,
-
                 ),
-                autovalidate: true,
+                 autovalidate: true,
                 validator: (value) {
                   RegExp exp = RegExp(
                       "[0-9]");
@@ -947,6 +947,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                   }
                   return null;
                 },
+
               ),
             ),
           ),
@@ -976,7 +977,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                     labelText: 'Social Credibility out of 10',
                     contentPadding: new EdgeInsets.symmetric(horizontal: 15.0),
                     border: InputBorder.none),
-                autovalidate: true,
+                     autovalidate: true,
                 validator: (value) {
                   RegExp exp = RegExp(
                       "[0-9]");
@@ -991,6 +992,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                   }
                   return null;
                 },
+
               ),
             ),
           ),
@@ -1020,7 +1022,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                     labelText: 'Land Factors out of 10',
                     contentPadding: new EdgeInsets.symmetric(horizontal: 15.0),
                     border: InputBorder.none),
-                autovalidate: true,
+                     autovalidate: true,
                 validator: (value) {
                   RegExp exp = RegExp(
                       "[0-9]");
@@ -1035,6 +1037,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                   }
                   return null;
                 },
+
               ),
             ),
           ),
@@ -1052,8 +1055,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
               child: new TextFormField(
                 controller: helthfactor,
                 keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  WhitelistingTextInputFormatter.digitsOnly,
+                inputFormatters: [
                   LengthLimitingTextInputFormatter(2)
                 ],
                 decoration: new InputDecoration(
@@ -1064,7 +1066,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                     labelText: 'Health Factors out of 10',
                     contentPadding: new EdgeInsets.symmetric(horizontal: 15.0),
                     border: InputBorder.none),
-                autovalidate: true,
+                    autovalidate: true,
                 validator: (value) {
                   RegExp exp = RegExp(
                       "[0-9]");
@@ -1079,6 +1081,7 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                   }
                   return null;
                 },
+
               ),
             ),
           ),
@@ -1106,11 +1109,15 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                                 latitude: position?.latitude,
                                 longitude: position?.longitude)));
                     if (polygons != null) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('Farm Boundry Updated Successfully')));
+                      showDialog(
+                          context: context,
+                          builder: (_) =>
+                              LogoutOverlay(message: "Farm Boundary Updated Successfully"));
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('No Boundry created For Farm')));
+                      showDialog(
+                          context: context,
+                          builder: (_) =>
+                              LogoutOverlay(message: "No Boundary created For Farm"));
                     }
                   },
                   label: Text(
@@ -1130,8 +1137,11 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                 //         .map((e) => '[${e.latitude},${e.longitude}]')
                 //         .toList())
                 //     ?.toList();
-                print("Sending data > ${polygons != null}");
-                if (enterpriseController.text.isNotEmpty &&
+                print("Sending data > ${polygons.toString()}");
+                print(_enterprise);
+                
+                if (polygons.length != null &&
+                  // enterpriseController.text.isNotEmpty &&
                     acerageController.text.isNotEmpty &&
                     farmerScore1Controller.text.isNotEmpty &&
                     farmerScore2Controller.text.isNotEmpty &&
@@ -1141,16 +1151,23 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                     helthfactor.text.isNotEmpty) {
                   print("Done clicked");
                   _sendData();
-                  setState(() {});
+                  // dispose();
+                  setState(() {
+                     dispose();
+                  });
+                  //  showDialog(
+                  //             context: context,
+                  //             builder: (_) => LogoutOverlay(message: "Enter All fields"));
                   showDialog(
                       context: context,
-                      builder: (_) => ord.LogoutOverlay(
+                      builder: (_) => LogoutOverlay(
                         message: "Added Farm",
                       ));
                 } else {
+                  
                   showDialog(
                       context: context,
-                      builder: (_) => ord.LogoutOverlay(
+                      builder: (_) => LogoutOverlay(
                         message: "Add All fields",
                       ));
                 }
@@ -1242,3 +1259,4 @@ class CustomDelegate<T> extends SearchDelegate<T> {
     );
   }
 }
+

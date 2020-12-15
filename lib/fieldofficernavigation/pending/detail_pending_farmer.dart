@@ -69,7 +69,7 @@ class DetailPendingFarmer extends StatelessWidget {
                                   ? 'Active'
                                   : 'Not Active',
                               style: TextStyle(
-                                  color: int.parse(farmInfo.status) != 0
+                                  color: int.parse(farmInfo.status) == 0
                                       ? Colors.green
                                       : Colors.red,
                                   fontSize: 18),

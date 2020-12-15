@@ -33,11 +33,11 @@ class _SensingPageState extends State<SensingPage> {
         ..files
             .add(await http.MultipartFile.fromPath('file', _aadharImage?.path))
         ..files
-            .add(await http.MultipartFile.fromPath('file', _aadharImage2?.path))
+            .add(await http.MultipartFile.fromPath('file1', _aadharImage2?.path))
         ..files
-            .add(await http.MultipartFile.fromPath('file', _aadharImage3?.path))
+            .add(await http.MultipartFile.fromPath('file2', _aadharImage3?.path))
         ..files
-            .add(await http.MultipartFile.fromPath('file', _aadharImage4?.path))
+            .add(await http.MultipartFile.fromPath('file3', _aadharImage4?.path))
         // ..files
         //     .add(await http.MultipartFile.fromPath('file', _aadharImage5?.path))
         // ..files

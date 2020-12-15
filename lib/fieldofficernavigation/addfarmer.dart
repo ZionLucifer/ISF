@@ -835,7 +835,7 @@ class _AndroidMessagesPageState extends State<AndroidMessagesPage> {
                                   child: new TextFormField(
                                     controller: panController,
                                     inputFormatters: <TextInputFormatter>[
-                                      LengthLimitingTextInputFormatter(10)
+                                      LengthLimitingTextInputFormatter(10),
                                     ],
                                     decoration: new InputDecoration(
                                       // hintText: 'Pan No',
