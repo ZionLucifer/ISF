@@ -2,7 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:apps/components/logout_overlay.dart';
 import 'package:apps/model/overview.dart';
+// import 'package:audio_picker/audio_picker.dart';
+import 'package:audioplayers/audioplayers.dart';
+// import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../Utils/Image/PickImage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -16,11 +20,15 @@ class AddNewNotification extends StatefulWidget {
 }
 
 class _AddNewNotificationState extends State<AddNewNotification> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final navigatorKey = GlobalKey<NavigatorState>();
   SharedPreferences sharedPreferences;
   String userId, mobile;
   TextEditingController titleController = new TextEditingController();
   TextEditingController descriptionController = new TextEditingController();
   File _image;
+  String _absolutePathOfAudio;
+  AudioPlayer audioPlayer;
   // final picker = ImagePicker();
   Widget displaySelectedFile(File file) {
     return new Container(
@@ -34,6 +42,7 @@ class _AddNewNotificationState extends State<AddNewNotification> {
     // final image = await picker.getImage(source: ImageSource.camera);
     String ipath = await ImageUtils.getimage(context);
 
+
     if (ipath == null) {
       print("No Image was Picked");
     }
@@ -45,6 +54,7 @@ class _AddNewNotificationState extends State<AddNewNotification> {
       _image = fileImage;
     });
   }
+
 
   _sendData(file) async {
     var request = http.MultipartRequest('POST',
@@ -86,11 +96,59 @@ class _AddNewNotificationState extends State<AddNewNotification> {
     // TODO: implement initState
     super.initState();
     _getData();
+    audioPlayer = AudioPlayer();
   }
+  void showLoading() {
+    showDialog(
+      context: navigatorKey.currentState.overlay.context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          child: new Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              new CircularProgressIndicator(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: new Text("Loading"),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void dismissLoading() {
+    Navigator.pop(navigatorKey.currentState.overlay.context);
+  }
+
+  void openAudioPicker() async {
+    showLoading();
+    var path = await AudioPicker.pickAudio();
+    dismissLoading();
+    setState(() {
+      _absolutePathOfAudio = path;
+    });
+  }
+
+  void playMusic() async {
+    await audioPlayer.play(_absolutePathOfAudio, isLocal: true);
+  }
+
+  void stopMusic() async {
+    await audioPlayer.stop();
+  }
+
+  void resumeMusic() async {
+    await audioPlayer.resume(); // quickly plays the sound, will not release
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       key: _scaffoldKey,
       appBar: AppBar(
         leading: IconButton(
             icon: Icon(
@@ -172,6 +230,129 @@ class _AddNewNotificationState extends State<AddNewNotification> {
                     ),
                   ),
                 ),
+                 SizedBox(height: 20),
+                Container(
+
+                   child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              FlatButton(
+                color: Colors.orange,
+                child: Text(
+                  "Select an audio",
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () {
+                  openAudioPicker();
+                },
+              ),
+              _absolutePathOfAudio == null
+                  ? Container()
+                  : Text(
+                      "Absolute path",
+                      style: TextStyle(fontWeight: FontWeight.w700),
+                    ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Clipboard.setData(
+                        new ClipboardData(text: _absolutePathOfAudio));
+                    _scaffoldKey.currentState.showSnackBar(
+                      SnackBar(content: Text('Copied path !')),
+                    );
+                  },
+                  child: _absolutePathOfAudio == null
+                      ? Container()
+                      : Text(_absolutePathOfAudio),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  _absolutePathOfAudio == null
+                      ? Container()
+                      : FlatButton(
+                          color: Colors.green[400],
+                          child: Text(
+                            "Play",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onPressed: playMusic,
+                        ),
+                  _absolutePathOfAudio == null
+                      ? Container()
+                      : FlatButton(
+                          color: Colors.red[400],
+                          child: Text(
+                            "Stop",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onPressed: stopMusic,
+                        )
+                ],
+              ),
+            ],
+          ),
+        ),
+                  // width: double.infinity,
+                  // padding: const EdgeInsets.all(8.0),
+                  // decoration: BoxDecoration(
+                  //     color: Colors.orange[300],
+                  //     borderRadius: BorderRadius.circular(10.0)),
+                  // child: Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   // crossAxisAlignment: CrossAxisAlignment.center,
+                  //   children: [
+                  //     Expanded(
+                  //       flex: 1,
+                  //       child: Center(
+                  //         child: FlatButton(
+                  //           onPressed: () {
+                  //              openAudioPicker();
+                  //           },
+                  //           child: Icon(Icons.mic_rounded,
+                  //               color: Colors.white, size: 50),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //     // Expanded(
+                  //     //   flex: 1,
+                  //     //   child: FlatButton(
+                  //     //     onPressed: () {},
+                  //     //     child: Icon(Icons.play_circle_fill_outlined,
+                  //     //         color: Colors.white, size: 50),
+                  //     //   ),
+                  //     // ),
+                  //     // Expanded(
+                  //     //   flex: 1,
+                  //     //   child: FlatButton(
+                  //     //     onPressed: () {},
+                  //     //     child: Icon(Icons.pause,
+                  //     //         color: Colors.white, size: 50),
+                  //     //   ),
+                  //     // ),
+                  //        Expanded(
+                  //       flex: 1,
+                  //       child: Center(
+                  //         child: FlatButton(
+                  //           onPressed: () {},
+                  //           child: Icon(Icons.autorenew,
+                  //               color: Colors.white, size: 50),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //     Expanded(
+                  //       flex: 4,
+                  //       child: Center(
+                  //         child: Text('Audio File.mp3',style: TextStyle(color: Colors.white,fontSize: 20),),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+          
+
                 SizedBox(height: 20),
                 Container(
                   height: 100,
@@ -250,3 +431,12 @@ class _AddNewNotificationState extends State<AddNewNotification> {
     );
   }
 }
+class AudioPicker {
+  static const MethodChannel _channel = const MethodChannel('audio_picker');
+
+  static Future<String> pickAudio() async {
+    final String absolutePath = await _channel.invokeMethod('pick_audio');
+    return absolutePath;
+  }
+}
+

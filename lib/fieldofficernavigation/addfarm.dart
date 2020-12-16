@@ -167,15 +167,18 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
       print(e);
     }
     setState(() {
+      
       acerageController.clear();
       enterpriseController.clear();
       farmerScore1Controller.clear();
       farmerScore2Controller.clear();
       farmerScore3Controller.clear();
       farmerScore4Controller.clear();
-      descController.clear();
+      plotController.clear();
+      descController.clear(); 
       helthfactor.clear();
       _farmImage = null;
+
       print("All the controllers cleared");
     });
     Navigator.pop(context);
@@ -1150,10 +1153,11 @@ class _AndroidMessagesPagesState extends State<AndroidMessagesPages> {
                     plotController.text.isNotEmpty &&
                     helthfactor.text.isNotEmpty) {
                   print("Done clicked");
-                  _sendData();
+                 
                   // dispose();
                   setState(() {
-                     dispose();
+                  _sendData();
+                  dispose();
                   });
                   //  showDialog(
                   //             context: context,
